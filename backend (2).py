@@ -39,10 +39,7 @@ CSV_PATH = Path(__file__).parent / "output_folder" / "calendar.csv"
 CSV_COLUMNS = ["id", "date", "time", "title", "person", "location", "notes", "recurring", "created_at"]
 
 EMAILTONAME = {
-    "james.mcintyre.c@gmail.com": "James",
-    "substitutesarah@gmail.com": "Sarah",
-    "mcintyreconnor.09@gmail.com": "Connor",
-    "simonmcintyre24@gmail.com": "Simon",
+
 }
 
 def repairtruncatedjson(json_str):
