@@ -1,0 +1,7 @@
+.env
+output_folder/
+venv/
+__pycache__/
+*.pyc
+mcintyrelogo.jpeg
+.DS_Store

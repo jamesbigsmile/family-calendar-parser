@@ -1,14 +1,5 @@
-
-# Gmail (use App Password, not main password)
-GMAIL_USER=your-calendar@gmail.com
-GMAIL_PASSWORD=your16char-app-password
-
-# Family recipient emails (comma separated)
-FAMILY_EMAILS=family1@gmail.com,family2@gmail.com
-
-# Ollama (local)
+GMAIL_USER=familycalendar.mcintyres@gmail.com
+GMAIL_PASSWORD=your-16-char-app-password-here
+FAMILY_EMAILS=james.mcintyre.c@gmail.com,substitutesarah@gmail.com,mcintyreconnor.09@gmail.com,simonmcintyre24@gmail.com
 OLLAMA_ENDPOINT=http://localhost:11434
 OLLAMA_MODEL=qwen2.5:0.5b
-
-# Polling interval (seconds)
-POLL_INTERVAL=900  # 15 minutes

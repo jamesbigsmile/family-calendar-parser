@@ -1,62 +1,49 @@
+# Family Calendar Parser v1.3
 
-# Family Calendar Parser
-
-Lightweight self-hosted email-to-calendar system for Mac mini. Parses natural language emails into CSV events using local Ollama (Qwen2.5). No cloud, no paid services.
-
-## Features
-- Gmail IMAP polling (15min interval)
-- Dual parsing: structured rules + Ollama NL
-- Flask web UI for event management
-- CSV storage (human-readable)
-- Daily summary emails
-- Relative date/time handling
-
-## Architecture
-```
-Gmail → IMAP → Python/Flask → CSV events → Web UI
-                           ↓
-                      Ollama Qwen2.5 (optional NL parsing)
-```
+Lightweight family calendar from email. Free services only.
 
 ## Quick Start
-```bash
-# 1. Clone repo
-git clone <repo-url>
-cd family-calendar
 
-# 2. Setup (Mac mini)
+```bash
+cd family-calendar-parser
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-# 3. Configure .env
 cp .env.example .env
-# Edit with your Gmail app password
+nano .env  # Fill Gmail credentials
 
-# 4. Start Ollama (separate terminal)
-OLLAMA_KEEP_ALIVE=24h ollama serve
-ollama pull qwen2.5:0.5b
-
-# 5. Start app
-python3 app.py
-
-# 6. Open browser
-http://localhost:5000
+python3 backend.py  # Starts polling
 ```
 
-## Email Examples
+## Features
+
+- Parses natural language emails → calendar events
+- Relative dates ("tomorrow", "next Thursday")
+- 24-hour time parsing ("6:30pm" → 1830)
+- Gmail polling every 15min
+- Daily HTML summaries with logo
+- CSV storage (output_folder/calendar.csv)
+- Ollama Qwen2.5 local AI (no internet)
+
+## Test
+
+Send email to GMAIL_USER:
 ```
-"Duty day Tuesday from 6am to 10pm" → 2026-01-14 0600 Duty day
-"Meeting Thursday at 2pm" → 2026-01-16 1400 Meeting
-"Yoga Saturday the 17th at 9am" → 2026-01-17 0900 Yoga
+Subject: Test
+Body: I have yoga tomorrow at 9 AM
+```
+
+Check:
+```bash
+tail -f output_folder/logs/backend*.log
+cat output_folder/calendar.csv
 ```
 
 ## Files
-- `app.py` - Flask web UI
-- `backend.py` - Email polling, parsing, CSV ops
-- `requirements.txt` - Dependencies
-- `.env.example` - Config template
-- `docs/` - Build notes, fixes, improvements
 
-## Credits
-Built for hobby use on Mac mini 8GB RAM. Free services only.
+- `backend.py` - Core logic + polling
+- `requirements.txt` - Dependencies
+- `.env.example` - Copy to `.env`
+- `output_folder/` - CSV + logs (auto-created)
+ #family-calendar-parser
